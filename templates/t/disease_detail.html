@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="stylesDis.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Abel');
+
+        html,
+        body {
+            background: #FCEEB5;
+            font-family: Abel, Arial, Verdana, sans-serif;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+        }
+
+        .card {
+            width: 550px;
+            height: 300px;
+            background-color: #fff;
+            background: linear-gradient(#f8f8f8, #fff);
+            box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            margin: 1.5rem;
+        }
+
+        .card h1 {
+            text-align: center;
+        }
+
+        .card .additional {
+            position: absolute;
+            width: 150px;
+            height: 100%;
+            background: linear-gradient(#dE685E, #EE786E);
+            transition: width 0.4s;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+
+        .card:hover .additional {
+            width: 100%;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .card .additional .user-card {
+            width: 150px;
+            height: 100%;
+            position: relative;
+            float: left;
+        }
+
+        .card .additional .user-card::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 10%;
+            right: -2px;
+            height: 80%;
+            border-left: 2px solid rgba(0, 0, 0, 0.025);
+            */
+        }
+
+        .card .additional .user-card .level,
+        .card .additional .user-card .points {
+            top: 15%;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 0.475rem 0.95rem;
+            border-radius: 100px;
+            box-shadow: 1px 1px 2px white;
+            white-space: nowrap;
+        }
+
+        .card .additional .user-card .points {
+            top: 85%;
+        }
+
+        .card .additional .user-card svg {
+            top: 50%;
+        }
+
+        .card .additional .more-info {
+            width: 300px;
+            float: left;
+            position: absolute;
+            left: 150px;
+            height: 100%;
+        }
+
+        .card .additional .more-info h1 {
+            color: #fff;
+            margin-bottom: 0;
+        }
+
+        .card .additional .coords {
+            margin: 0 1rem;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .card .additional .coords span+span {
+            float: right;
+        }
+
+        .card .additional .stats {
+            font-size: 2rem;
+            display: flex;
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            top: auto;
+            color: #fff;
+        }
+
+        .card .additional .stats>div {
+            flex: 1;
+            text-align: center;
+        }
+
+        .card .additional .stats i {
+            display: block;
+        }
+
+        .card .additional .stats div.title {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .card .additional .stats div.value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.5rem;
+        }
+
+        .card .additional .stats div.value.infinity {
+            font-size: 2.5rem;
+        }
+
+        .card .general {
+            width: 400px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            box-sizing: border-box;
+            padding: 1rem;
+            padding-top: 0;
+        }
+
+        .card .general .more {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w3-top" style="z-index: 100;">
+        <div class="w3-bar w3-black w3-xxlarge">
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-hover-black"><i class="fa fa-home"
+                    style="margin-left: 20px;"></i></a>
+        </div>
+    </div>
+    <div class="center">
+
+        <div class="card">
+            <div class="additional">
+                <div class="user-card">
+
+                    <a href="{% url 'disease_medicines' pk=pk %}"
+                        style="color:white; text-decoration: none; font: 900;">
+                        <div class="points center">
+                            Medicines
+                        </div>
+                    </a>
+                    <!-- <svg width="110" height="110" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg" role="img"
+                        aria-labelledby="title desc" class="center">
+                        <title id="title">Teacher</title>
+                        <desc id="desc">Cartoon of a Caucasian woman smiling, and wearing black glasses and a purple
+                            shirt with white collar drawn by Alvaro Montoro.</desc>
+                        <style>
+                            .skin {
+                                fill: #eab38f;
+                            }
+
+                            .eyes {
+                                fill: #1f1f1f;
+                            }
+
+                            .hair {
+                                fill: #2f1b0d;
+                            }
+
+                            .line {
+                                fill: none;
+                                stroke: #2f1b0d;
+                                stroke-width: 2px;
+                            }
+                        </style>
+                        <defs>
+                            <clipPath id="scene">
+                                <circle cx="125" cy="125" r="115" />
+                            </clipPath>
+                            <clipPath id="lips">
+                                <path
+                                    d="M 106,132 C 113,127 125,128 125,132 125,128 137,127 144,132 141,142  134,146  125,146  116,146 109,142 106,132 Z" />
+                            </clipPath>
+                        </defs>
+                        <circle cx="125" cy="125" r="120" fill="rgba(0,0,0,0.15)" />
+                        <g stroke="none" stroke-width="0" clip-path="url(#scene)">
+                            <rect x="0" y="0" width="250" height="250" fill="#b0d2e5" />s
+                        </g>
+                    </svg> -->
+                </div>
+                <div class="more-info">
+                    <h1>Symptoms</h1>
+                    <br>
+                    {% for i in symptoms %}
+                    <div class="coords">
+                        <span style="font-weight: bold;">{{ i.name | title }}</span>
+                    </div>
+                    {% endfor %}
+
+                    <!-- <div class="coords">
+                        <span>Position/Role</span>
+                    </div> -->
+
+                </div>
+            </div>
+            <div class="general">
+                <h1>{{ disease.name }}</h1>
+                <p style="font-weight: 550;">{{ disease.description }}</p>
+                <!-- <span class="more">Hover over the card for more info</span> -->
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

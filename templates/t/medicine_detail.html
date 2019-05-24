@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>W3.CSS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Abel');
+
+        html,
+        body {
+            background: #FCEEB5;
+            font-family: Abel, Arial, Verdana, sans-serif;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+        }
+
+        .card {
+            width: 500px;
+            height: 250px;
+            background-color: #fff;
+            background: linear-gradient(#f8f8f8, #fff);
+            box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            margin: 1.5rem;
+        }
+
+        .card h1 {
+            text-align: center;
+        }
+
+        .card .additional {
+            position: absolute;
+            width: 150px;
+            height: 100%;
+            background: linear-gradient(#dE685E, #EE786E);
+            transition: width 0.4s;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+
+        .card:hover .additional {
+            width: 100%;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .card .additional .user-card {
+            width: 150px;
+            height: 100%;
+            position: relative;
+            float: left;
+        }
+
+        .card .additional .user-card::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 10%;
+            right: -2px;
+            height: 80%;
+            border-left: 2px solid rgba(0, 0, 0, 0.025);
+        }
+
+        .card .additional .user-card .level,
+        .card .additional .user-card .points {
+            top: 15%;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 0.475rem 0.95rem;
+            border-radius: 100px;
+            box-shadow: 1px 1px 2px white;
+            white-space: nowrap;
+        }
+
+        .card .additional .user-card .points {
+            top: 85%;
+        }
+
+        .card .additional .user-card svg {
+            top: 50%;
+        }
+
+        .card .additional .more-info {
+            width: 350px;
+            float: left;
+            position: absolute;
+            left: 150px;
+            height: 100%;
+            padding: 1rem
+        }
+
+        .card .additional .more-info h1 {
+            color: #fff;
+            margin-bottom: 0;
+        }
+
+        .card .additional .coords {
+            margin: 0 1rem;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .card .additional .coords span+span {
+            float: right;
+        }
+
+        .card .additional .stats {
+            font-size: 2rem;
+            display: flex;
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            top: auto;
+            color: #fff;
+        }
+
+        .card .additional .stats>div {
+            flex: 1;
+            text-align: center;
+        }
+
+        .card .additional .stats i {
+            display: block;
+        }
+
+        .card .additional .stats div.title {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .card .additional .stats div.value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.5rem;
+        }
+
+        .card .additional .stats div.value.infinity {
+            font-size: 2.5rem;
+        }
+
+        .card .general {
+            width: 350px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            box-sizing: border-box;
+            padding: 1rem;
+            padding-top: 0;
+        }
+
+        .card .general .more {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w3-top" style="z-index: 100;">
+        <div class="w3-bar w3-black w3-xxlarge">
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-hover-black"><i class="fa fa-home"
+                    style="margin-left: 20px;"></i></a>
+        </div>
+    </div>
+    <!-- <button><a href="{% url 'home' %}">Home</a></button> -->
+    <!-- 
+    <div class="w3-container">
+        <h2>Medicines</h2>
+        {% for i in medicines %}
+
+        <div class="w3-card-4" style="width:35%; margin: 20px auto;">
+            <header class="w3-container w3-light-grey">
+                <h3>{{ i.name | upper }}</h3>
+            </header>
+            <div class="w3-container">
+                <p>{{ i.type | capfirst }}</p>
+                <hr>
+                <p>{{ i.drug | title }}</p><br>
+            </div>
+            <button class="w3-button w3-block w3-dark-grey"><a href="{% url 'store_detail' pk=i.name %}">Where to
+                    buy</a></button>
+        </div>
+        {% endfor %}
+
+    </div> -->
+
+    <div class="" style="width: 450px; margin: 5% auto;">
+        {% for i in medicines %}
+        <div class="card">
+            <div class="additional">
+                <div class="user-card">
+
+                    <a href="{% url 'store_detail' pk=i.name %}" style="color:white; text-decoration: none; font: 900;">
+                        <div class="points center">
+                            Where to BUy
+                        </div>
+                    </a>
+
+                </div>
+                <div class="more-info">
+                    <h1>{{i.name | title}}</h1>
+                    <hr>
+                    <p>{{i.type | title }}</p>
+                    <hr>
+                    <h6 style="font-weight: 550;">{{ i.drug | title}}</h6>
+                </div>
+            </div>
+            <div class="general">
+                <h1>{{i.name | title}}</h1>
+                <hr>
+                <p>{{i.type | title }}</p>
+                <hr>
+                <h6 style="font-weight: 550;">{{ i.drug | title}}</h6>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Raleway", Arial, Helvetica, sans-serif
+        }
+
+        .myLink {
+            display: none
+        }
+    </style>
+</head>
+
+<body class="w3-light-grey">
+
+    <datalist id="diseases">
+        {% for i in diseases %}
+        <option>{{ i.name }}</option>
+        {% endfor %}
+    </datalist>
+
+    <datalist id="medicines">
+        {% for i in medicines %}
+        <option>{{ i.name }}</option>
+        {% endfor %}
+    </datalist>
+
+    <datalist id="symptoms">
+        {% for i in symptoms %}
+        <option>{{ i.name }}</option>
+        {% endfor %}
+    </datalist>
+
+    <div class="w3-top">
+        <div class="w3-bar w3-cyan w3-xxlarge">
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-hover-cyan"><i class="fa fa-home"
+                    style="margin-left: 20px;"></i></a>
+        </div>
+    </div>
+
+    {% if messages %}
+    <div class="alert alert-danger alert-dismissible" style="top: 70px; width: 25%; margin: auto;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ messages.message }}
+    </div>
+    {% endif %}
+
+    <header class="">
+        <img class="w3-image" src="{% static 'img/back.jpg' %}" alt="image" style="height: -webkit-fill-available; width: 100%;">
+        <div class="w3-display-middle" style="width:30%;margin: auto;">
+
+            <div class="w3-bar w3-black" style="border-top-right-radius:10px; border-top-left-radius:10px;">
+                <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Disease');">
+                    <i class="fa fa-plane w3-margin-right"></i>Disease</button>
+                <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Medicine');">
+                    <i class="fa fa-bed w3-margin-right"></i>Medicine</button>
+                <!-- <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Symptom');">
+                    <i class="fa fa-bed w3-margin-right"></i>Symptom</button> -->
+            </div>
+
+            <div id="Disease" class="w3-container w3-white w3-padding-16 myLink"
+                style="border-bottom-right-radius:10px; border-bottom-left-radius:10px;">
+                <form method="GET" action="." enctype="multipart/form-data">
+                    <div class="w3-full">
+                        <input class="w3-input w3-border w3-round" type="text" placeholder="Disease"
+                            style="margin: 2%; width:96%;" list="diseases" name="search" required>
+                    </div>
+                    <button type="submit" id="diseaseBtn" class="w3-btn w3-ripple w3-teal w3-round-large"
+                        style="margin: 2% 35%;">Search
+                        Disease</button>
+                </form>
+            </div>
+
+            <div id="Medicine" class="w3-container w3-white w3-padding-16 myLink"
+                style="border-bottom-right-radius:10px; border-bottom-left-radius:10px;">
+                <form method="GET" action="." enctype="multipart/form-data">
+                    <div class="w3-full">
+                        <input class="w3-input w3-border w3-round" type="text" placeholder="Medicine"
+                            style="margin: 2%; width:96%;" list="medicines" name="medicine" required>
+                    </div>
+                    <button type="submit" class="w3-btn w3-ripple w3-teal w3-round-large" style="margin: 2% 35%;">Search
+                        Medicines</button>
+                </form>
+            </div>
+
+            <!-- <div id="Symptom" class="w3-container w3-white w3-padding-16 myLink"
+                style="border-bottom-right-radius:10px; border-bottom-left-radius:10px;">
+                <form method="GET" action="." enctype="multipart/form-data">
+                    <div class="w3-full">
+                        <input class="w3-input w3-border w3-round" type="text" placeholder="Symptom"
+                            style="margin: 2%; width:96%;" list="symptoms" name="symptom" required>
+                    </div>
+                    <button type="submit" class="w3-btn w3-ripple w3-teal w3-round-large" style="margin: 2% 35%;">Search
+                        Symptoms</button>
+                </form>
+            </div> -->
+
+        </div>
+    </header>
+
+
+    <script>
+        // Tabs
+        function openLink(evt, linkName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("myLink");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-teal", "");
+            }
+            document.getElementById(linkName).style.display = "block";
+            evt.currentTarget.className += " w3-teal";
+        }
+
+        // Click on the first tablink on load
+        document.getElementsByClassName("tablink")[0].click();
+    </script>
+
+</body>
+
+</html>

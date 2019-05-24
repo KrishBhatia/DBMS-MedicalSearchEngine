@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Medical Search Engine</title>
+</head>
+
+<body>
+
+    <datalist id="languages">
+        {% for i in query %}
+            <option>{{ i.name }}</option>
+        {% endfor %}
+    </datalist>
+
+    <form method="POST" class="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="default">Disease</label>
+        <input type="text" id="default" list="languages" name="name">
+        <button type="submit" class="save btn btn-default">search</button>
+    </form>
+</body>
+<script>
+    
+</script>
+
+</html>

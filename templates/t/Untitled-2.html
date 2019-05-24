@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Medical Search Engine</title>
+</head>
+
+<body>
+    <button><a href="{% url 'home' %}">Home</a></button>
+    <h4>{{ disease.description }}</h4>
+    {% for i in symptoms %}
+        <ul>{{ i.name }}</ul>
+    {% endfor %}
+    <button><a href="{% url 'disease_medicines' pk=pk %}">Medicines</a></button>
+
+</body>
+
+</html>
